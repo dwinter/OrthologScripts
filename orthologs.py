@@ -81,15 +81,12 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description = 'ortho_subset, sequence files, name of ortholog, minimum species')
 	parser.add_argument('ortho_subset', help='tsv with ortholog information')
 	parser.add_argument('sequence_path', help='tsv with sequence paths')
-	parser.add_argument('og_name', help='ortholog name with no suffixes')
 	parser.add_argument('min_species', help='minimum number of species')
 	args = parser.parse_args()
 	O = Orthologs(args.ortho_subset, args.sequence_path)
 	O.retrieve_seqs(args.og_name)
-	out_name="{}_unaligned.fna".format(args.og_name)
-	ortholog = []
 	for ortho_name, seqs in O.all_orthos(int(args.min_species)):
+                out_name = "unaligned/{}.fna".foramt(ortho_name)
 		SeqIO.write(seqs, out_name, "fasta")	
-	shutil.move("/home/imogen/BPRC/Sequence_Analysis/{}".format(out_name), "/home/imogen/BPRC/Sequence_Analysis/results/unaligned/{}".format(out_name))
 
 
