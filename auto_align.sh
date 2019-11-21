@@ -1,6 +1,5 @@
 #!/bin/bash
 
 name=$(basename $1 _unaligned.fna)
-echo ${name}
-mafft --auto --adjustdirection $1 > ${name}_aligned
-mv ${name}_aligned ./results/aligned
+echo "Aligning "${name}
+mafft --auto --adjustdirection $1 > aligned/${name}_aligned.fna
